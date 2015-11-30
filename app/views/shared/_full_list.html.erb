@@ -6,13 +6,13 @@
         <th>Name</th>
         <th>Upvote</th>
       </tr>
-
-      <% media.each do |m| %>
-      	<td>Ranked: <%= m.rank %></td>
-      	<td><%= link_to m.name, "#{plur_name}/#{m.id}" %></td>
-      	<td><%= button_to "Upvote", "/#{plur_name}/#{m.id}/vote", class: "btn btn-default"%></td>
-      <% end %>
-
+			<tr>
+	      <% media.each do |m| %>
+	      	<td>Ranked: <%= m.rank %></td>
+	      	<td><%= link_to m.name, "#{plur_name}/#{m.id}" %></td>
+	      	<td><%= button_to "Upvote", "/#{plur_name}/#{m.id}/vote", class: "btn btn-default"%></td>
+	      <% end %>
+			</tr>
     </table>
   </div>
 </div>

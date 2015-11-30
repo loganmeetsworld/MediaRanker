@@ -4,8 +4,8 @@
 	<ul class="list-group">
 		<% media.each do |m| %>
 			<li>
-				<h2><%= link_to m.title "/#{media_name}/#{m.id}" %> </h2>
-				<h6>Ranked: <%= m.rank %></h6> 
+				<h2 class="main-title"><%= link_to m.name, "/#{media_name}/#{m.id}" %> </h2>
+				<h4 class="sub-title">Ranked: <%= m.rank %></h4> 
 			</li>
 		<% end %> 
 
