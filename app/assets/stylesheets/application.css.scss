@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|News+Gothic|Inconsolata|Droid+Sans|Roboto|Cabin|Open+Sans');
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.page-header {
+ display: inline-block;
+}
+
+img {
+  height: 65px;
+  margin-left: 30px;
+}
+
+.main-title {
+  display: inline-block;
+}
+
+.sub-title {
+  display: inline-block;
+  color: rgba(0, 0, 0, .5);
+}

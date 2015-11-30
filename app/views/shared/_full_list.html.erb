@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-offset-3">
+    <table class="table table-hover">
+      <tr>
+        <th>Ranking</th>
+        <th>Name</th>
+        <th>Upvote</th>
+      </tr>
+
+      <% media.each do |m| %>
+      	<td>Ranked: <%= m.rank %></td>
+      	<td><%= link_to m.name, "#{plur_name}/#{m.id}" %></td>
+      	<td><%= button_to "Upvote", "/#{plur_name}/#{m.id}/vote", class: "btn btn-default"%></td>
+      <% end %>
+
+    </table>
+  </div>
+</div>
+
+<div class="bottom-buttons">
+	<%= button_to "View All Media", root_path, method: "get", class: "btn btn-default" %>
+	<%= button_to "Add #{sing_name.capitalize}", "/#{plur_name}/new", method: "get", class: "btn btn-default" %>
+</div>

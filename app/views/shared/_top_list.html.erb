@@ -1,0 +1,15 @@
+<div class="col-sm-4">
+	<h2>Top <%= media_name.capitalize %> </h2>
+
+	<ul class="list-group">
+		<% media.each do |m| %>
+			<li>
+				<h2><%= link_to m.title "/#{media_name}/#{m.id}" %> </h2>
+				<h6>Ranked: <%= m.rank %></h6> 
+			</li>
+		<% end %> 
+
+		<div class='btn btn-link'><%= link_to "View More #{media_name.capitalize}", "/#{media_name}" %></div>
+	</ul>
+
+</div>
