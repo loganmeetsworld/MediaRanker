@@ -1,13 +1,13 @@
-<h2><%= media.title %></h2>
+<h2><%= media.name %></h2>
 <h3 class="sub-title"><%= sub %> <%= person %></h3>
 
 <h4>Upvotes: <%= media.rank %></h4>
 <p><%= media.description %></p>
 
-<%= button_to "Upvote", "/#{plur_name}/#{params[:id]}/vote", class: "btn btn-primary"%>
+<%= button_to "Upvote", "./#{params[:id]}/vote", class: "btn btn-primary"%>
 
 <br>
-<%= link_to "Edit #{media.name}", "#{plur_name}/#{params[:id]}/edit", class: "btn btn-default" %> 
+<%= link_to "Edit #{media.name}", "./#{params[:id]}/edit", class: "btn btn-default" %> 
 <%= link_to "DELETE", "/#{plur_name}/#{params[:id]}", method: :delete, onclick: "return confirm('Are you sure?')", class: 'btn btn-danger btn-lg' %> 
-<%= link_to "View all #{plur_name.capitalize}", "#{plur_name}/", class: "btn btn-default" %> 
+<%= link_to "View all #{plur_name.capitalize}", "./", class: "btn btn-default" %> 
 <%= link_to "View all Media", root_url, class: "btn btn-default" %> 

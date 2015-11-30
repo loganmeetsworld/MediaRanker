@@ -1,3 +1,7 @@
-<h2>New Album</h2>
-
-<%= render partial: 'shared/form', locals: { media: @album, person: "artist" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "New Album",
+			media: @album, 
+			http_verb: "create",
+			details: [:name, :artist, :description],
+		} %>

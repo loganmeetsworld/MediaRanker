@@ -1,3 +1,7 @@
-<h2>New Book</h2>
-
-<%= render partial: 'shared/form', locals: { media: @book, person: "author" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "New Book",
+			media: @book, 
+			verb: "create",
+			details: [:name, :author, :description],
+		} %>

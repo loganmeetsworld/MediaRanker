@@ -1,3 +1,7 @@
-<h2>Edit <%= @book.name %></h2>
-
-<%= render partial: 'shared/form', locals: { media: @book, person: "author" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "Edit #{@book.name}",
+			media: @book, 
+			verb: "patch",
+			details: [:name, :author, :description],
+		} %>

@@ -1,3 +1,7 @@
-<h2>New Movie</h2>
-
-<%= render partial: 'shared/form', locals: { media: @movie, person: "director" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "New Movie",
+			media: @movie, 
+			http_verb: "create",
+			details: [:name, :director, :description],
+		} %>

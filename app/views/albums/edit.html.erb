@@ -1,3 +1,7 @@
-<h2>Edit <%= @album.name %></h2>
-
-<%= render partial: 'shared/form', locals: { media: @album, person: "artist" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "Edit #{@album.name}",
+			media: @album, 
+			verb: "patch",
+			details: [:name, :artist, :description],
+		} %>

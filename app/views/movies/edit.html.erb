@@ -1,3 +1,7 @@
-<h2>Edit <%= @movie.name %></h2>
-
-<%= render partial: 'shared/form', locals: { media: @movie, person: "director" } %>
+<%= render partial: 'shared/form', 
+		locals: { 
+			title: "Edit #{@movie.name}",
+			media: @movie, 
+			verb: "patch",
+			details: [:name, :director, :description],
+		} %>
