@@ -8,13 +8,13 @@
 	        <th>Name</th>
 	        <th>Upvote</th>
 	      </tr>
-				<tr>
 		      <% media.each do |medium| %>
-		      	<td>Ranked: <%= medium.rank %></td>
-		      	<td><%= link_to medium.name, polymorphic_path(medium) %></td>
-		      	<td><%= button_to "Upvote", polymorphic_path([:vote, medium]), method: "post", class: "btn btn-default"%></td>
+			      <tr>
+			      	<td>Ranked: <%= medium.rank %></td>
+			      	<td><%= link_to medium.name, polymorphic_path(medium) %></td>
+			      	<td><%= button_to "Upvote", polymorphic_path([:vote, medium]), method: "post", class: "btn btn-default"%></td>
+			      </tr>
 		      <% end %>
-				</tr>
 			</tbody>
 		</table>
 
