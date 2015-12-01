@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Album, type: :model do
-	it_behaves_like "a media model"
+	describe Album do
+    it_behaves_like "media model"
+  end
 end

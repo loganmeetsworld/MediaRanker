@@ -1,4 +1,3 @@
 class Movie < ActiveRecord::Base
-	def self.top(num)
-	end
+	validates :name, presence: true
 end

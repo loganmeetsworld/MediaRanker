@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
-	it_behaves_like "a media controller"
+	describe "GET 'index'" do 
+		it "returns 200 status" do 
+			get :index
+			expect(response.status).to eq(200)
+		end
+	end
 end
