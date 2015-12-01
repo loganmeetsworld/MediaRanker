@@ -1,15 +1,10 @@
-<div class="col-sm-4">
-	<h2>Top <%= media_name.capitalize %> </h2>
-
-	<ul class="list-group">
-		<% media.each do |m| %>
-			<li>
-				<h2 class="main-title"><%= link_to m.name, "/#{media_name}/#{m.id}" %> </h2>
-				<h4 class="sub-title">Ranked: <%= m.rank %></h4> 
-			</li>
-		<% end %> 
-
-		<div class='btn btn-link'><%= link_to "View More #{media_name.capitalize}", "/#{media_name}" %></div>
-	</ul>
-
+<div class="col-md-4">
+	<h1>Top <%= media_name.capitalize %></h1>
+	<% media.each do |m| %>
+		<h2>
+			<%= link_to m.name, polymorphic_path(m) %>
+			<small>Ranked: <%= m.rank %></small>
+		</h2>
+	<% end %>
+	<%= link_to "View More #{media_name.capitalize}", polymorphic_path(media_name) %>
 </div>

@@ -4,20 +4,40 @@
 @import "bootstrap";
 @import "font-awesome";
 
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
 .page-header {
- display: inline-block;
+  background: url(owl.png);
+  background-repeat: no-repeat;
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin: .67em 0;
+}
+
+.page-header h1 {
+    margin-left: 150px;
+}
+
+div {
+    display: block;
 }
 
 img {
   height: 65px;
   margin-left: 30px;
-}
-
-.main-title {
-  display: inline-block;
-}
-
-.sub-title {
-  display: inline-block;
-  color: rgba(0, 0, 0, .5);
 }

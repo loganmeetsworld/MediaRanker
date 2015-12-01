@@ -1,5 +1,7 @@
-<div class="row">
-  <%= render partial: "/shared/top_list", locals: { media: @albums, media_name: 'albums' } %> 
-  <%= render partial: "/shared/top_list", locals: { media: @books, media_name: 'books' } %> 
-  <%= render partial: "/shared/top_list", locals: { media: @movies, media_name: 'movies' } %> 
+<div class="col-lg-12">
+	<div class="row">
+		<%= render partial: "/shared/top_list", locals: { media: @albums, media_name: 'albums' } %> 
+		<%= render partial: "/shared/top_list", locals: { media: @books, media_name: 'books' } %> 
+		<%= render partial: "/shared/top_list", locals: { media: @movies, media_name: 'movies' } %> 
+	</div>
 </div>

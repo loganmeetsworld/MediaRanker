@@ -1,6 +1,8 @@
 class MoviesController < ApplicationController
+	before_action only: [:show, :edit, :update, :vote] { @movie = Movie.find(params[:id]) }
+
 	def index
-		@movies = Movie.all
+		@movies = Movie.all.order(:rank).reverse
 	end
 
 	def new
@@ -13,12 +15,24 @@ class MoviesController < ApplicationController
   end
 
   def show
-  	@movie = Movie.find(params[:id])
   end
 
+  def edit
+  end
+
+  def update
+  	@movie.update(movie_params[:movie])
+  	redirect_to movie_path(@movie)
+  end
+
+  def destroy
+		Movie.destroy(params[:id])
+		redirect_to movies_path
+	end
+
   def vote
-  	@movie = Movie.find(params[:id])
-  	@movie.rank += 1
+  	@movie.update(rank: @movie.rank += 1)
+  	redirect_to :back
   end
 
 	private

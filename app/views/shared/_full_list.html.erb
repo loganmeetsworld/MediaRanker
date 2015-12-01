@@ -9,8 +9,8 @@
 			<tr>
 	      <% media.each do |m| %>
 	      	<td>Ranked: <%= m.rank %></td>
-	      	<td><%= link_to m.name, "#{plur_name}/#{m.id}" %></td>
-	      	<td><%= button_to "Upvote", "/#{plur_name}/#{m.id}/vote", class: "btn btn-default"%></td>
+	      	<td><%= link_to m.name, polymorphic_path(m) %></td>
+	      	<td><%= button_to "Upvote", polymorphic_path([:vote, m]), method: "post", class: "btn btn-default"%></td>
 	      <% end %>
 			</tr>
     </table>
@@ -19,5 +19,5 @@
 
 <div class="bottom-buttons">
 	<%= button_to "View All Media", root_path, method: "get", class: "btn btn-default" %>
-	<%= button_to "Add #{sing_name.capitalize}", "/#{plur_name}/new", method: "get", class: "btn btn-default" %>
-</div>
+	<%= button_to "Add #{sing_name.capitalize}", new_polymorphic_path(sing_name), method: "get", class: "btn btn-default" %>
+</div>	

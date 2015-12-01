@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
+	before_action only: [:show, :edit, :update, :vote] { @book = Book.find(params[:id]) }
+
 	def index
-		@books = Book.all
+		@books = Book.all.order(:rank).reverse
 	end
 
 	def new
@@ -13,13 +15,24 @@ class BooksController < ApplicationController
   end
 
   def show
-  	@book = Book.find(params[:id])
   end
 
-  def vote
-  	@book = Book.find(params[:id])
-  	@book.rank += 1
-  	render "index"
+  def edit
+  end
+
+  def update
+  	@book.update(book_params[:book])
+  	redirect_to book_path(@book)
+  end
+
+  def destroy
+		Book.destroy(params[:id])
+		redirect_to books_path
+	end
+
+ 	def vote
+  	@book.update(rank: @book.rank += 1)
+  	redirect_to :back
   end
 
 	private
