@@ -2,7 +2,7 @@
 	<h1>Top <%= plur_name.capitalize %></h1>
 	<% media.each do |medium| %>
 		<h2>
-			<%= link_to medium.plur_name, polymorphic_path(medium) %>
+			<%= link_to medium.name, polymorphic_path(medium) %>
 			<small>Ranked: <%= medium.rank %></small>
 		</h2>
 	<% end %>
