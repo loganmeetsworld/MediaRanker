@@ -1,1 +1,6 @@
-<%= render partial: 'shared/display', locals: { media: @movie, sub: "Directed by", person: @movie.director, plur_name: :movies } %>
+<%= render partial: 'shared/show', locals: { 
+	media: @movie, 
+	subtitle: "Directed by", 
+	creator: @movie.director, 
+	plur_name: :movies 
+	} %>

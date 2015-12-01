@@ -1,1 +1,6 @@
-<%= render partial: 'shared/display', locals: { media: @album, sub: "Performed by", person: @album.artist, plur_name: :albums } %>
+<%= render partial: 'shared/show', locals: { 
+	media: @album, 
+	subtitle: "Performed by", 
+	creator: @album.artist, 
+	plur_name: :albums 
+	} %>

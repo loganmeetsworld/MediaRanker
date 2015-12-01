@@ -27,12 +27,10 @@ class AlbumsController < ApplicationController
 
   def destroy
 		Album.destroy(params[:id])
-
 		redirect_to albums_path
 	end
 
 	def vote
-
   	@album.update(rank: @album.rank += 1)
   	redirect_to :back
   end

@@ -4,9 +4,9 @@
 
 		<%= form_for media, method: verb do |f| %> 
 			<div class="form group"> 
-				<% details.each do |d| %> 
-					<%= f.label d %> 
-					<%= f.text_field d, class: "form-control", required: true %> 
+				<% details.each do |detail| %> 
+					<%= f.label detail %> 
+					<%= f.text_field detail, class: "form-control", required: true %> 
 				<% end %> 
 			</div>
 			<%= f.submit "Save", class: "btn btn-default" %>

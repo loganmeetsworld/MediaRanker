@@ -1,12 +1,12 @@
 <h2>
 	<%= media.name %>
-	<small><%= sub %> <%= person %></small>
+	<small><%= subtitle %> <%= creator %></small>
 </h2>
 
 <h4>Upvotes: <%= media.rank %></h4>
 <p><%= media.description %></p>
 
-<%= button_to "Upvote", "./#{params[:id]}/vote", method: "post", class: "btn btn-primary"%>
+<%= button_to "Upvote", polymorphic_path([:vote, media]), method: "post", class: "btn btn-primary"%>
 
 <br>
 <%= link_to "Edit #{media.name}", edit_polymorphic_path(media), class: "btn btn-default" %> 
