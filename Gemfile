@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # For styling
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
+gem 'carrierwave', '~> 0.9'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -9,6 +9,7 @@
 					<%= f.text_field detail, class: "form-control", required: true %> 
 				<% end %> 
 			</div>
+			<%= f.hidden_field :type, value: @type %>
 			<%= f.submit "Save", class: "btn btn-default" %>
 		<% end %>
 

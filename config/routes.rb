@@ -1,12 +1,20 @@
 Rails.application.routes.draw do  
-  # Main page with top selections
-  root 'media#index'
-
-  # Upvote selection pages
-  post '/albums/:id/vote' => 'albums#vote', as: "vote_album"
-  post '/books/:id/vote' => 'books#vote', as: "vote_book"
-  post '/movies/:id/vote' => 'movies#vote', as: "vote_movie"
+  # Media indexes 
+  get 'albums' => 'media#albums_index'
+  get 'books' => 'media#books_index'
+  get 'movies' => 'media#movies_index'
 
   # All resources for add, edit, delete, update the media
-  resources :movies, :books, :albums
+
+  resources :media
+
+	resources :albums, controller: 'media', type: 'Album' 
+	resources :books, controller: 'media', type: 'Book' 
+	resources :movies, controller: 'media', type: 'Movie'
+
+	post '/albums/:id/vote' => 'media#vote', controller: 'media', type: 'Album', as: :vote_album
+  post '/books/:id/vote' => 'media#vote', controller: 'media', type: 'Book', as: :vote_book
+  post '/movies/:id/vote' => 'media#vote', controller: 'media', type: 'Movie', as: :vote_movie
+
+	root 'media#index'
 end
