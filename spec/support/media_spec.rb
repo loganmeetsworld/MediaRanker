@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.shared_examples "medium model" do
+RSpec.shared_examples "media" do
 	describe ".validates" do
 	  it "must have a name" do
 	  	medium = described_class.new 

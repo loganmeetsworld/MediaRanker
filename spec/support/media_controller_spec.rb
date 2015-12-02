@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.shared_examples "medium controller" do
+RSpec.shared_examples "media controller" do
 	let(:sing_name) { model.to_s.downcase}
 	let(:plur_name) { sing_name + "s" }
 	let(:media) { sing_name.to_sym }
@@ -8,7 +8,7 @@ RSpec.shared_examples "medium controller" do
   let(:bad_params) { { media => {} } }
 
 	describe "GET 'index'" do 
-		it "returns 200 status" do 
+		it "returns the index page with success" do 
 			get :index
 			expect(response).to be_success
 			expect(response.status).to eq 200
@@ -17,21 +17,23 @@ RSpec.shared_examples "medium controller" do
 	end
 
 	describe "GET 'show'" do
-		let(:something) do
-      model.create(name: "test")
-    end
+		before :each do 
+			@media = model.create(name: "test")
+		end
 
-    it "renders the show view" do
-      get :show, id: something.id
+    it "returns the show page with success" do
+      get :show, id: @media.id
       expect(subject).to render_template :show
+			expect(response.status).to eq 200
     end
 	end
 
 	describe "GET 'new'" do 
 		context "valid params" do 
-			it "renders new view" do
+			it "renders new view with success" do
       	get :new
       	expect(subject).to render_template :new
+      	expect(response).to be_success
     	end
 
 			it "creates a new instance of the media" do 
@@ -43,12 +45,12 @@ RSpec.shared_examples "medium controller" do
 
 	describe "POST 'create'" do 
 		context "valid params" do
-			it "creates a record" do
+			it "creates a media record" do
         post :create, media_params
         expect(model.count).to eq 1
       end
 
-			it "redirects to the index page" do 
+			it "redirects to the index page after creating a media record" do 
 				post :create, media_params
     		expect(subject).to redirect_to polymorphic_path(plur_name)
     	end
@@ -118,5 +120,4 @@ RSpec.shared_examples "medium controller" do
 			end
 		end
 	end
-
 end
