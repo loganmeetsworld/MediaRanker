@@ -2,8 +2,10 @@ require 'spec_helper'
 
 RSpec.shared_examples "medium controller" do
 	let(:name_string) { model.to_s.downcase}
+	let(:plur_name) { name_string + "s" }
 	let(:media) { name_string.to_sym }
-  let(:media_params) { { media => { name: "test" } } }
+  let(:media_params) { { media => { name: "name" } } }
+  let(:bad_params) { { media => {} } }
 
 	describe "GET 'index'" do 
 		it "returns 200 status" do 
@@ -40,10 +42,23 @@ RSpec.shared_examples "medium controller" do
 	end
 
 	describe "POST 'create'" do 
-		context "valid params" do 
+		context "valid params" do
+			it "creates a record" do
+        post :create, media_params
+        expect(model.count).to eq 1
+      end
+
+			it "redirects to the index page" do 
+				post :create, media_params
+    		expect(subject).to redirect_to polymorphic_path(plur_name)
+    	end
 		end
 
 		context "invalid params" do 
+			it "renders new template on error" do 
+				post :create, bad_params
+      	expect(subject).to render_template :new
+      end
 		end
 	end
 
