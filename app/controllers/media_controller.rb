@@ -3,7 +3,7 @@ class MediaController < ApplicationController
 	before_action only: [:index, :albums_index] { @albums = Medium.albums }
 	before_action only: [:index, :books_index] { @books = Medium.books }
 	before_action only: [:index, :movies_index] { @movies = Medium.movies }
-	before_action only: [:show, :edit, :update, :destroy, :vote] { @type = @medium.type.pluralize }
+	before_action only: [:show, :edit, :destroy, :vote] { @type = @medium.type.pluralize }
 
 	def index
 		@albums.all.order(:rank).reverse.take(5)
@@ -46,7 +46,12 @@ class MediaController < ApplicationController
   def edit; end
 
   def update
-  	@medium.update(media_params)
+  	media_type = @medium.type.downcase.singularize
+
+  	@medium.update(
+  		creator: params[media_type][:creator], 
+  		name: params[media_type][:name], 
+  		cddescription: params[media_type][:description])
   	redirect_to @medium
   end
 
