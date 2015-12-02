@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MediaController, type: :controller do
-	it_behaves_like "medium controller"
+	let(:model) { Medium }
+	it_behaves_like "media controller"
 end

@@ -1,6 +1,8 @@
 class Medium < ActiveRecord::Base
 	# Validations
 	validates :name, presence: true
+
+	
 	# Scopes 
 	self.inheritance_column = :type
 

@@ -1,29 +1,10 @@
 class MediaController < ApplicationController
 	before_action only: [:show, :edit, :update, :destroy, :vote] { @medium = Medium.find(params[:id]) }
-	before_action only: [:index, :albums_index] { @albums = Medium.albums }
-	before_action only: [:index, :books_index] { @books = Medium.books }
-	before_action only: [:index, :movies_index] { @movies = Medium.movies }
 	before_action only: [:show, :edit, :destroy, :vote] { @type = @medium.type.pluralize }
 
 	def index
-		@albums.all.order(:rank).reverse.take(5)
-		@books.all.order(:rank).reverse.take(5)
-		@movies.all.order(:rank).reverse.take(5)
-	end
-
-	def albums_index
-		@albums.all.order(:rank).reverse
-		render :media_index
-	end
-
-	def books_index
-		@books.all.order(:rank).reverse
-		render :media_index
-	end
-
-	def movies_index
-		@movies.all.order(:rank).reverse
-		render :media_index
+		media_type = params[:type]
+		@media = Medium.where("type = '#{media_type}'")
 	end
 
 	def show; end
