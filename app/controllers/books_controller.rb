@@ -19,11 +19,9 @@ class BooksController < ApplicationController
   	end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
   	@book.update(book_params[:book])

@@ -18,11 +18,9 @@ class AlbumsController < ApplicationController
   	end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
   	@album.update(album_params[:album])
