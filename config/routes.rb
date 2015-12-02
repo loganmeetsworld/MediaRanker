@@ -1,6 +1,6 @@
 Rails.application.routes.draw do  
   # Main page with top selections
-  root 'welcome#index'
+  root 'media#index'
 
   # Upvote selection pages
   post '/albums/:id/vote' => 'albums#vote', as: "vote_album"
