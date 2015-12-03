@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 	root 'welcome#index'
   # All resources for add, edit, delete, update the media
 
+  resources :media, except: :index
 	resources :albums, controller: 'media', type: 'Album' 
 	resources :books, controller: 'media', type: 'Book' 
 	resources :movies, controller: 'media', type: 'Movie'

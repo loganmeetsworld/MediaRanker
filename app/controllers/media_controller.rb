@@ -3,8 +3,7 @@ class MediaController < ApplicationController
 	before_action only: [:show, :edit, :destroy, :vote] { @type = @medium.type.pluralize }
 
 	def index
-		media_type = params[:type]
-		@media = Medium.where("type = '#{media_type}'")
+		@media = Medium.where("type = '#{params[:type]}'")
 	end
 
 	def show; end
@@ -32,7 +31,7 @@ class MediaController < ApplicationController
   	@medium.update(
   		creator: params[media_type][:creator], 
   		name: params[media_type][:name], 
-  		cddescription: params[media_type][:description])
+  		description: params[media_type][:description])
   	redirect_to @medium
   end
 
