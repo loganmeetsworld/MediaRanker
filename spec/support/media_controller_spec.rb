@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 RSpec.shared_examples "media controller" do |subject_class|
 	describe "GET 'index" do 
@@ -64,8 +65,8 @@ RSpec.shared_examples "media controller" do |subject_class|
 	describe "POST 'create'" do 
 		context "valid params" do
 			it "redirects to show page after succesfully creating new" do
-      	post :create, good_params.merge({type: subject_class.to_s})
-      	expect(response.status).to eq 200 
+      	post :create, create_params
+      	expect(subject).to redirect_to polymorphic_path(Medium.all.last)
     	end
 
    		it "creates a media record" do
