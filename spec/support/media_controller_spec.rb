@@ -1,6 +1,20 @@
 require 'spec_helper'
 
 RSpec.shared_examples "media controller" do |subject_class|
+	describe "GET 'index" do 
+		before :each do 
+			get :index, type: model.type
+		end
+
+		it "returns the index page" do
+      expect(subject).to render_template :index
+    end
+
+    it "returns 200 status" do
+    	expect(response.status).to eq 200 
+    end
+	end
+
 	describe "GET 'show'" do
 		before :each do 
 			get :show, type: subject_class.to_s, id: model.id
