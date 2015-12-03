@@ -1,20 +1,16 @@
 class Medium < ActiveRecord::Base
-	# Validations
-	validates :name, presence: true
-	validates :type, presence: true
+  # Validations
+  validates :name, presence: true
+  validates :type, presence: true
 
-	
-	# Scopes 
-	self.inheritance_column = :type
-
-	def self.types
+  # Scopes 
+  def self.types
     %w(Album Book Movie)
   end 
 
-
-	scope :albums, -> { where(type: 'Album') } 
-	scope :books, -> { where(type: 'Book') } 
-	scope :movies, -> { where(type: 'Movie') }
+  scope :albums, -> { where(type: 'Album') } 
+  scope :books, -> { where(type: 'Book') } 
+  scope :movies, -> { where(type: 'Movie') }
 end
 
 class Album < Medium; end 
