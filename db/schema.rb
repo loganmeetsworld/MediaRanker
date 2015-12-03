@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202175619) do
+ActiveRecord::Schema.define(version: 20151203154227) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151202175619) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "type"
+    t.string   "attachment"
   end
 
   create_table "movies", force: :cascade do |t|

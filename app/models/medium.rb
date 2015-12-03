@@ -1,6 +1,7 @@
 class Medium < ActiveRecord::Base
 	# Validations
 	validates :name, presence: true
+	validates :type, presence: true
 
 	
 	# Scopes 

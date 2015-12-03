@@ -19,6 +19,6 @@
 		</table>
 
 		<%= link_to "View All Media", root_path, method: "get", class: "btn btn-default" %>
-		<%= link_to "Add #{name.capitalize}", new_polymorphic_path(name), method: "get", class: "btn btn-default" %>
+		<%= link_to "Add #{name.capitalize}", new_polymorphic_path(name.downcase.singularize), method: "get", class: "btn btn-default" %>
 	</div>
 </div>

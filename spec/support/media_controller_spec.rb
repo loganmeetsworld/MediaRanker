@@ -1,122 +1,111 @@
 require 'spec_helper'
 
-RSpec.shared_examples "media controller" do
-	let(:sing_name) { model.to_s.downcase}
-	let(:plur_name) { sing_name + "s" }
-	let(:media) { sing_name.to_sym }
-  let(:media_params) { { media => { name: "name" } } }
-  let(:bad_params) { { media => {} } }
-
-	describe "GET 'index'" do 
-		it "returns the index page with success" do 
-			get :index
-			expect(response).to be_success
-			expect(response.status).to eq 200
-			expect(response).to have_http_status 200
-		end
-	end
-
+RSpec.shared_examples "media controller" do |subject_class|
 	describe "GET 'show'" do
 		before :each do 
-			@media = model.create(name: "test")
+			get :show, type: subject_class.to_s, id: model.id
 		end
 
-    it "returns the show page with success" do
-      get :show, id: @media.id
+    it "returns the show page" do
       expect(subject).to render_template :show
-			expect(response.status).to eq 200
+    end
+
+    it "returns 200 status" do
+    	expect(response.status).to eq 200 
     end
 	end
 
 	describe "GET 'new'" do 
-		context "valid params" do 
-			it "renders new view with success" do
-      	get :new
-      	expect(subject).to render_template :new
-      	expect(response).to be_success
-    	end
+		before :each do 
+			get :new, type: subject_class.to_s, id: model.id
+		end
 
-			it "creates a new instance of the media" do 
-				get :new, media_params
-				expect(assigns(media)).to be_kind_of(model)
-			end
+		context "selecting the new button" do 
+	    it "returns 200 status" do
+	    	expect(response.status).to eq 200 
+	    end
+
+	    it "renders the new page" do
+      	expect(subject).to render_template :new
+    	end
+		end
+	end
+
+	describe "GET 'edit'" do 
+		before :each do 
+			get :edit, type: subject_class.to_s, id: model.id
+		end
+
+		context "selecting the edit button" do 
+	    it "returns 200 status" do
+	    	expect(response.status).to eq 200 
+	    end
+
+	    it "renders the edit page" do
+      	expect(subject).to render_template :edit
+    	end
 		end
 	end
 
 	describe "POST 'create'" do 
 		context "valid params" do
-			it "creates a media record" do
-        post :create, media_params
-        expect(model.count).to eq 1
-      end
-
-			it "redirects to the index page after creating a media record" do 
-				post :create, media_params
-    		expect(subject).to redirect_to polymorphic_path(plur_name)
+			it "redirects to show page after succesfully creating new" do
+      	post :create, good_params.merge({type: subject_class.to_s})
+      	expect(response.status).to eq 200 
     	end
-		end
 
-		context "invalid params" do 
-			it "renders new template on error" do 
-				post :create, bad_params
-      	expect(subject).to render_template :new
+   		it "creates a media record" do
+        post :create, good_params
+        expect(model).to be_an_instance_of model.class
       end
-		end
+    end
+
+    context "invalid params" do
+    	it "renders new template on error" do
+      	post :create, bad_params.merge({type: subject_class.to_s})
+      	expect(subject).to render_template :new
+    	end
+    end
 	end
 
 	describe "PATCH 'update'" do
-		before :each do 
-			@media = model.create(name: "test")
-		end
-
-		context "selecting the edit button" do
-			it "redirects to the individual show page" do
-				patch :update, { id: @media.id }.merge(media_params)
-				expect(subject).to redirect_to polymorphic_path(@media)
-			end
-
-			it "updates the record" do 
-				patch :update, { id: @media.id }.merge(media_params)
-				@media.reload
-				expect(@media.name).to eq media_params[media][:name]
-			end
-		end
+		context "selecting submit button on edit" do
+			it "redirects to show page after successful edit" do
+	      patch :update, good_params.merge({id: model.id, type: subject_class.to_s})
+	      expect(subject).to redirect_to polymorphic_path(subject_class.last)
+	    end
+	  end
 	end
 
 	describe "DELETE 'destroy'" do
-		before :each do 
-			@media = model.create(name: "name")
-		end
-
 		context "selecting delete button" do
 			it "redirects to the individual show page" do
-				delete :destroy, id: @media.id
-				expect(subject).to redirect_to polymorphic_path(plur_name)
+				delete :destroy, good_params.merge({id: model.id, type: subject_class.to_s})
+      	expect(response.status).to eq 302
 			end
 
-			it "should be able to delete media" do 
-				expect { delete :destroy, { id: @media.id } }.to change(model, :count).by(-1)
+			it "actually deletes the thing" do 
+				@media = Medium.find(model.id)
+				expect { delete :destroy, { id: @media.id } }.to change(Medium.all, :count).by(-1)
 			end
 		end
 	end
 
 	describe "POST 'vote'" do 
 		before :each do 
-			@media = model.create(name: "name")
-			request.env["HTTP_REFERER"] = polymorphic_path(@media)
+			request.env["HTTP_REFERER"] = "back_path"
+			@old_model_rank = model.rank += 1
 		end
 
 		context "selecting upvote button" do
 			it "adds one to the rank" do 
-				post :vote, id: @media.id
-				@media.reload 
-				expect(@media.rank).to eq 1
+				post :vote, type: model.type, id: model.id
+				model.reload
+				expect(model.rank).to eq @old_model_rank
 			end
 
 			it "stays on the same page after vote" do
-				post :vote, id: @media.id
-				@media.reload
-				expect(subject).to redirect_to polymorphic_path(@media)
+				expect(response.status).to eq 200 
 			end
 		end
 	end

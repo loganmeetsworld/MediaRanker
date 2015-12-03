@@ -8,6 +8,7 @@
 					<%= f.label detail %> 
 					<%= f.text_field detail, class: "form-control", required: true %> 
 				<% end %> 
+				<br>
 			</div>
 			<%= f.hidden_field :type, value: @type %>
 			<%= f.submit "Save", class: "btn btn-default" %>

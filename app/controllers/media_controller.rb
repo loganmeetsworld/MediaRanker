@@ -1,6 +1,6 @@
 class MediaController < ApplicationController
 	before_action only: [:show, :edit, :update, :destroy, :vote] { @medium = Medium.find(params[:id]) }
-	before_action only: [:show, :edit, :destroy, :vote] { @type = @medium.type.pluralize }
+	before_action only: [ :edit, :destroy, :vote] { @type = @medium.type.pluralize }
 
 	def index
 		@media = Medium.where("type = '#{params[:type]}'")
@@ -17,7 +17,8 @@ class MediaController < ApplicationController
   	@medium = Medium.create(media_params[:medium])
 
   	if @medium.save
-  		redirect_to @medium
+  		@media_type = params[:medium][:type]
+  		redirect_to polymorphic_path(@medium)
   	else
   		render "new"
   	end
