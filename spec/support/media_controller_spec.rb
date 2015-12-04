@@ -69,7 +69,7 @@ RSpec.shared_examples "media controller" do |subject_class|
       	expect(subject).to redirect_to polymorphic_path(Medium.all.last)
     	end
 
-   		it "creates a media record" do
+   		it "creates a Media record" do
         post :create, good_params
         expect(model).to be_an_instance_of model.class
       end
@@ -109,14 +109,14 @@ RSpec.shared_examples "media controller" do |subject_class|
 	describe "POST 'vote'" do 
 		before :each do 
 			request.env["HTTP_REFERER"] = "back_path"
-			@old_model_rank = model.rank += 1
+			@new_model_rank = model.rank += 1
 		end
 
 		context "selecting upvote button" do
 			it "adds one to the rank" do 
 				post :vote, type: model.type, id: model.id
 				model.reload
-				expect(model.rank).to eq @old_model_rank
+				expect(model.rank).to eq @new_model_rank
 			end
 
 			it "stays on the same page after vote" do
