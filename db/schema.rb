@@ -13,24 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151203154227) do
 
-  create_table "albums", force: :cascade do |t|
-    t.string   "name"
-    t.string   "artist"
-    t.string   "description"
-    t.integer  "rank",        default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string   "name"
-    t.string   "author"
-    t.integer  "rank",        default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "description"
-  end
-
   create_table "media", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -40,15 +22,6 @@ ActiveRecord::Schema.define(version: 20151203154227) do
     t.datetime "updated_at",              null: false
     t.string   "type"
     t.string   "attachment"
-  end
-
-  create_table "movies", force: :cascade do |t|
-    t.string   "name"
-    t.string   "director"
-    t.string   "description"
-    t.integer  "rank",        default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
   end
 
 end
