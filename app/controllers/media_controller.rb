@@ -1,4 +1,4 @@
-pclass MediaController < ApplicationController
+class MediaController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy, :vote] { @medium = Medium.find(params[:id]) }
   before_action only: [ :edit, :destroy, :vote] { @type = @medium.type.pluralize }
 
