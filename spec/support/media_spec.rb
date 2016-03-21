@@ -3,7 +3,6 @@ require 'spec_helper'
 RSpec.shared_examples "media" do
  let(:media_type) { Medium.types[rand(0..2)].constantize }
 
-
 	describe ".validates" do
 		let(:no_name) { media_type.new(name: nil) }
     let(:no_type) { media_type.new(name: "Generic Test", type: nil) }
