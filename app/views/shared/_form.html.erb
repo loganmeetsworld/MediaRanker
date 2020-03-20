@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2><%= title %></h2>
+
+    <%= form_for media, method: verb do |f| %> 
+      <div class="form group"> 
+        <% details.each do |detail| %> 
+          <%= f.label detail %> 
+          <%= f.text_field detail, class: "form-control", required: true %> 
+        <% end %> 
+        <br>
+      </div>
+      <%= f.hidden_field :type, value: @type %>
+      <%= f.submit "Save", class: "btn btn-default" %>
+    <% end %>
+
+  </div>
+</div>  

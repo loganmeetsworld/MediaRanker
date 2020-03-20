@@ -1,0 +1,5 @@
+<%= render partial: 'shared/full_list', 
+    locals: { 
+      name: params[:type],
+      media: @media.order(:rank).reverse
+    } %>

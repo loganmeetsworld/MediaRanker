@@ -1,0 +1,11 @@
+<h2><%= media.name %> <small><%= subtitle %> <%= creator %></small></h2>
+
+<h4>Upvotes: <%= media.rank %></h4>
+<p><%= media.description %></p>
+
+<%= button_to "Upvote", polymorphic_path([:vote, media]), method: "post", class: "btn btn-primary"%>
+
+<%= link_to "Edit #{media.name}", edit_polymorphic_path(media), class: "btn btn-default" %> 
+<%= link_to "DELETE", polymorphic_path(media), method: :delete, onclick: "return confirm('Are you sure?')", class: 'btn btn-danger' %> 
+<%= link_to "View all #{plur_name.capitalize}", polymorphic_path(plur_name), class: "btn btn-default" %> 
+<%= link_to "View all Media", root_url, class: "btn btn-default" %> 

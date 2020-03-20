@@ -1,0 +1,8 @@
+<div class="col-md-4">
+  <h1>Top <%= plur_name.capitalize %></h1>
+  <% media.each do |medium| %>
+    <h2><%= link_to medium.name, polymorphic_path(medium) %> <small>Ranked: <%= medium.rank %></small></h2>
+  <% end %>
+  
+  <%= link_to "View More #{plur_name.capitalize}", polymorphic_path(plur_name) %>
+</div>

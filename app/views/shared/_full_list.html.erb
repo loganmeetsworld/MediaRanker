@@ -1,0 +1,24 @@
+<h2><%= name.capitalize.pluralize %></h2>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th>Ranking</th>
+          <th>Name</th>
+          <th>Upvote</th>
+        </tr>
+          <% media.each do |medium| %>
+            <tr>
+              <td>Ranked: <%= medium.rank %></td>
+              <td><%= link_to medium.name, polymorphic_path(medium) %></td>
+              <td><%= button_to "Upvote", polymorphic_path([:vote, medium]), method: "post", class: "btn btn-default"%></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to "View All Media", root_path, method: "get", class: "btn btn-default" %>
+    <%= link_to "Add #{name.capitalize}", new_polymorphic_path(name.downcase.singularize), method: "get", class: "btn btn-default" %>
+  </div>
+</div>

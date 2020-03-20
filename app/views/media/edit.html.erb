@@ -1,0 +1,7 @@
+<%= render partial: 'shared/form', 
+    locals: { 
+      title: "Edit #{@medium.name}",
+      media: @medium, 
+      verb: "patch",
+      details: [:name, :creator, :description],
+    } %>

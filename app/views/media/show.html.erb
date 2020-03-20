@@ -1,0 +1,7 @@
+<%= render partial: 'shared/show', 
+    locals: { 
+      media: @medium, 
+      subtitle: "Performed by", 
+      creator: @medium.creator, 
+      plur_name: @medium.type.pluralize.downcase
+    } %>

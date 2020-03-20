@@ -1,0 +1,8 @@
+<%= render partial: 'shared/form', 
+    locals: { 
+      title: "New #{@medium.type}",
+      media: @medium,
+      type: @medium.type, 
+      verb: "create",
+      details: [:name, :creator, :description],
+    } %>
